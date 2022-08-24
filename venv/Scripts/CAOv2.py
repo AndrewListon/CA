@@ -4,7 +4,7 @@ import sqlite3
 from flask import Flask
 from flask import render_template
 from flask import request
-app = Flask(__name__)
+from flask_sqlalchemy import SQLAlchemy
 
 df = pd.read_csv('/Users/listo/OneDrive/HDIP - Computer Science/AdvancePrograming/CAOPointsCharts2020.csv',
         header = 0
@@ -18,7 +18,7 @@ connection = sqlite3.connect('/Users/listo/OneDrive/HDIP - Computer Science/Adva
 df.to_sql(
         name = 'table',
         con = connection,
-        if_exists = 'replace',
+        if_exists = 'False',
         index = False,
         dtype = {'CATEGORY' : 'real',
                 'COURSE TITLE' : 'real',
@@ -31,19 +31,23 @@ df.to_sql(
                 }
 )
 
+app = Flask(__name__,template_folder='templates')
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///CAO.sqlite3'
+app.config['SECRET_KEY'] = "secret key"
 
+db = SQLAlchemy(app)
 
-app.route("/list")
-def list():
-        con = sqlite3.connect("CAO.db")
-        con.row_factory = sqlite3.Row
-        cur = con.cursor()
-        cur.execute("select * from table")
-        rows = cur.fetchall()
-        return render_template("testing.html", rows = rows)
+class Data(db.Model):
+    
+    def __init__(self, CATEGORY, COURSE_TITLE, COLLEGE, COURSE_CODE ):
+        self.CATEGORY = name
+        self.COURSE_TITLE = COURSE_TITLE
+        self.COLLEGE = COLLEGE
+        self.COURSE_CODE = COURSE_CODE
 
-
-
+@app.route('/')
+def list_data():
+    return render_template('testing2.html', Data=Data.query.all())
 
 if __name__ == "__main__":
     app.run(debug=True)
