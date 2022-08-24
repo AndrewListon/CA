@@ -33,7 +33,7 @@ df.to_sql(
 
 
 
-app.route("/list")
+app.route("/")
 def list():
         con = sqlite3.connect("CAO.db")
         con.row_factory = sqlite3.Row
