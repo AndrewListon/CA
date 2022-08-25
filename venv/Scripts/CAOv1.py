@@ -1,9 +1,8 @@
 import pandas as pd
 import csv
 import sqlite3
-from flask import Flask
-from flask import render_template
-from flask import request
+from flask import Flask,render_template,request
+
 app = Flask(__name__)
 
 df = pd.read_csv('/Users/listo/OneDrive/HDIP - Computer Science/AdvancePrograming/CAOPointsCharts2020.csv',
@@ -32,15 +31,14 @@ df.to_sql(
 )
 
 
-
-app.route("/")
-def list():
+@app.route("/")
+def testing():
         con = sqlite3.connect("CAO.db")
         con.row_factory = sqlite3.Row
         cur = con.cursor()
-        cur.execute("select * from table")
+        cur.execute("SELECT * FROM table")
         rows = cur.fetchall()
-        return render_template("testing.html", rows = rows)
+        return render_template("testing.html",rows = rows)
 
 
 
