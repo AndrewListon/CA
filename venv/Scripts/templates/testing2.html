@@ -5,6 +5,7 @@
 <link rel="stylesheet" type="text/css" href=https://cdn.datatables.net/1.12.1/css/jquery.dataTables.css>
 
 <script type="text/javascript" charset="utf8" src=https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js></script>
+    <script src="{{ url_for('static', filename='vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
 
 <script>
 $(document).ready( function () {
@@ -27,17 +28,17 @@ $(document).ready( function () {
     </thead>
     <tbody>
     <script>
-    {% for data in Data %}
+    {% for row in rows %}
 
             <tr>
-                <td>{{data.CATEGORY}}</td>
-                <td>{{data.COURSE_TITLE}}</td>
-                <td>{{data.COLLEGE}}</td>
-                <td>{{data.COURSE CODE}}</td>
-                <td>{{data.2020}}</td>
-                <td>{{data.2021}}</td>
-                <td>{{data.2022 PREDICTION}}</td>
-                <td>{{data.LEVEL}}</td>
+                <td>{{row.CATEGORY}}</td>
+                <td>{{row.COURSE_TITLE}}</td>
+                <td>{{row.COLLEGE}}</td>
+                <td>{{row.COURSE_CODE}}</td>
+                <td>{{row.2020}}</td>
+                <td>{{row.2021}}</td>
+                <td>{{row.2022_PREDICTION}}</td>
+                <td>{{row.LEVEL}}</td>
             </tr>
     {% endfor %}
     </script>

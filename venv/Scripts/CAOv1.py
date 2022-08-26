@@ -15,33 +15,39 @@ print(df)
 connection = sqlite3.connect('/Users/listo/OneDrive/HDIP - Computer Science/AdvancePrograming/CA/venv/CAO.db')
 
 df.to_sql(
-        name = 'table',
+        name = 'table3',
         con = connection,
         if_exists = 'replace',
         index = False,
         dtype = {'CATEGORY' : 'real',
-                'COURSE TITLE' : 'real',
+                'COURSE_TITLE' : 'real',
                 'COLLEGE' : 'real',
-                'COURSE CODE' : 'real',
-                '2020' : 'integer',
-                '2021': 'integer',
-                '2022 PREDICTION' : 'integer',
+                'COURSE_CODE' : 'real',
+                '2020' : 'real',
+                '2021': 'real',
+                '2022_PREDICTION' : 'real',
                 'LEVEL' : 'integer',
                 }
 )
 
+#https://help.pythonanywhere.com/pages/NoSuchFileOrDirectory --- this fixed the issue!
 
 @app.route("/")
 def testing():
-        con = sqlite3.connect("CAO.db")
+        con = sqlite3.connect('/Users/listo/OneDrive/HDIP - Computer Science/AdvancePrograming/CA/venv/CAO.db')
         con.row_factory = sqlite3.Row
         cur = con.cursor()
-        cur.execute("SELECT * FROM table")
+        cur.execute('SELECT * FROM table3;')
         rows = cur.fetchall()
         return render_template("testing.html",rows = rows)
 
 
 
 
+
 if __name__ == "__main__":
     app.run(debug=True)
+
+#if __name__ == '__main__':
+   # app.debug = True
+   # app.run()
