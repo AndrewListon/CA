@@ -12,6 +12,7 @@ $(document).ready( function () {
 } );
 </script>
 </head>
+{% block content %}
 <table id="table_id" class="display">
     <thead>
         <tr>
@@ -30,10 +31,10 @@ $(document).ready( function () {
     {% for row in rows %}
 
             <tr>
-                <td>{{row["CATEGORY"]}}</td>
-                <td>{{row["COURSE_TITLE"]}}</td>
-                <td>{{row["COLLEGE"]}}</td>
-                <td>{{row["COURSE_CODE"]}}</td>
+                <td>{{ row["CATEGORY"] }}</td>
+                <td>{{ row.COURSE_TITLE}}</td>
+                <td>{{ row["COLLEGE"] }}</td>
+                <td>{{ row["COURSE_CODE"] }}</td>
                 <td>{{row["2020"]}}</td>
                 <td>{{row["2021"]}}</td>
                 <td>{{row["2022_PREDICTION"]}}</td>
@@ -46,9 +47,10 @@ $(document).ready( function () {
 
 
 
+
     </tbody>
 
 </table>
-
+{% endblock %}
 </body>
 </html>
