@@ -18,19 +18,11 @@ connection = sqlite3.connect('/Users/listo/OneDrive/HDIP - Computer Science/Adva
 
 
 df.to_sql(
-        name = 'CAO_TABLE',
+        name = 'table14',
         con = connection,
         if_exists = 'replace',
         index = False,
-        dtype = {'CATEGORY' : 'real',
-                'COURSE_TITLE' : 'real',
-                'COLLEGE' : 'real',
-                'COURSE_CODE' : 'real',
-                '2020' : 'real',
-                '2021': 'real',
-                '2022_PREDICTION' : 'real',
-                'LEVEL' : 'integer',
-                }
+
 )
 #This creates a new DB if none exists and addationally updates the DB if CSV file data has been altered
 #It reads the data from the DataFrame and creates an SQLite DB
@@ -43,7 +35,7 @@ def testing():
         con = sqlite3.connect('/Users/listo/OneDrive/HDIP - Computer Science/AdvancePrograming/CA/venv/CAO.db')
         con.row_factory = sqlite3.Row
         cur = con.cursor()
-        cur.execute('SELECT * FROM table7;')
+        cur.execute('SELECT * FROM table14;')
         rows = cur.fetchall()
         return render_template("CAO.html",rows = rows)
 
