@@ -18,7 +18,7 @@ connection = sqlite3.connect('/Users/listo/OneDrive/HDIP - Computer Science/Adva
 
 
 df.to_sql(
-        name = 'table14',
+        name = 'CAOpoints',
         con = connection,
         if_exists = 'replace',
         index = False,
@@ -35,7 +35,7 @@ def testing():
         con = sqlite3.connect('/Users/listo/OneDrive/HDIP - Computer Science/AdvancePrograming/CA/venv/CAO.db')
         con.row_factory = sqlite3.Row
         cur = con.cursor()
-        cur.execute('SELECT * FROM table14;')
+        cur.execute('SELECT * FROM CAOpoints;')
         rows = cur.fetchall()
         return render_template("CAO.html",rows = rows)
 
